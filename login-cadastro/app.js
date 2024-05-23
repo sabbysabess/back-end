@@ -46,6 +46,21 @@ app.post('/login', (req, res) => {
       }
     })
   });
+
+
+  app.post('/cadastro', (req, res) => {
+    const { username, password } = req.body;
+  
+    db.query('insert into user (username, password) values (?, ?)', [username, password], (error) => {
+     if (error){
+      res.status(500).send('Erro ao cadastrar')
+     } else {
+      res.send('Cadastrado com sucesso!!')
+     }
+    })
+  });
+
+
 app.listen(port, ()=>{
     console.log(`Servidor rodando no endereço: http://localhost:${port}`)
 });

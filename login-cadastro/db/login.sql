@@ -1,4 +1,3 @@
-create database login;
 use login;
 
 create table user (
@@ -16,3 +15,5 @@ insert into user (idUSer, username, password) values
 
 insert into user (idUser, username, password) values 
 (3, 'joao', 'teste');
+
+alter table user modify idUser int not null auto_increment;
