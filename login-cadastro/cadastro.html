@@ -19,6 +19,9 @@
       cursor: pointer; 
       outline: none; 
     }
+    .alert {
+      color: red
+    }
   </style>
 </head>
 <body>
@@ -30,7 +33,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-center">Cadastro</h5>
-          <form action="/cadastro" method="POST">
+          <form action="/cadastro" method="POST" id="cadastroForm">
             <div class="form-group">
               <label for="username">Usuário</label>
               <input type="text" class="form-control" id="username" name="username" placeholder="Nome do usuário" required>
@@ -39,9 +42,9 @@
               <label for="password">Senha</label>
               <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="confirm-group">
               <label for="password"> Confirmação senha</label>
-              <input type="password" class="form-control" id="password" name="confirmpassword" placeholder="Confirme sua senha" required>
+              <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirme sua senha" required>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Entrar</button>
           </form>
@@ -59,9 +62,8 @@
   document.getElementById("cadastroForm").addEventListener("submit", function(event){
     const password = document.getElementById("password").value;
     const confirm = document.getElementById("confirmpassword").value;
-    const tentativa =  document.getElementById("msg");
   
-    if(!tentativa){
+   
       if(password !== confirm){
         let span = document.createElement("span");
         span.classList.add('alert');
@@ -70,7 +72,7 @@
         document.getElementById("confirm-group").appendChild(span);
         event.preventDefault();
       }
-    }
+    
      
   })
   </script>
