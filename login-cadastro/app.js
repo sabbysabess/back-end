@@ -22,9 +22,14 @@ db.connect((error)=>{
 
 app.use(bodyParser.urlencoded({extended:true}))
 
-app.get("/", (req, res)=>{
+app.get("/", (req, res) => {
     res.sendFile(__dirname + '/login.html')
 });
+
+app.get("/cadastro", (req, res) => {
+  res.sendFile(__dirname + '/cadastro.html')
+});
+
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
@@ -48,16 +53,22 @@ app.post('/login', (req, res) => {
   });
 
 
+
   app.post('/cadastro', (req, res) => {
     const { username, password } = req.body;
-  
-    db.query('insert into user (username, password) values (?, ?)', [username, password], (error) => {
-     if (error){
-      res.status(500).send('Erro ao cadastrar')
+    const confirm = req.body.confirmpassword
+
+     if (password === confirm){
+      db.query('insert into user (username, password) values (?, ?)', [username, password], (error, results) => {
+        if(error) {
+          res.send('Erro ao cadastrar', error)
+        } else {
+          res.send('Cadastrado com sucesso')
+        }
+     })
      } else {
-      res.send('Cadastrado com sucesso!!')
+      res.send('Senhas não coincidem')
      }
-    })
   });
 
 
