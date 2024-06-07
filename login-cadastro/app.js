@@ -16,18 +16,18 @@ db.connect((error)=>{
     if (error){
         console.log("Erro ao conectar com o banco de dados")
     } else {
-        console.log("Conectado ao MySQL")
+        console.log("Conectado aoMySQL")
     }
 });
 
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({exended:true}))
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + '/login.html')
+    res.sendFile(__dirname + '/loin.html')
 });
 
-app.get("/cadastro", (req, res) => {
-  res.sendFile(__dirname + '/cadastro.html')
+app.get("/cadastro", (req, res) = {
+  res.sendFile(__dirname + '/cadatro.html')
 });
 
 
